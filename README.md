@@ -1,20 +1,6 @@
-#1 Задание.
-[client]
-user = root
-password = egor2757
-
-Место в хранилище:
-/etc/mysql/my.cnf
-
-#2 Задание
-mysql> CREATE DATABASE example;
-mysql> USE example
-mysql> CREATE TABLE users (id INT, name VARCHAR(20));
-
-#3 Задание
-mysqldump example > sample.sql
-mysql> CREATE DATABASE sample;
-mysql -f sample < sample.sql
-
-#4 Задание
-mysqldump --where="true limit 100" mysql help_keyword > new_help_keyword.sql
+1 Задание.  
+По структуре всё понятно.  
+2 Задание.  
+Таблица лайков изначально была дана в sql файле, можно было внести изменение в таблицу users для того, чтобы была возможность лайкать пользователей, но есть ли в этом смысл, если мы ориентируемся на БД ВК?  
+3 Задание.  
+Тестовые данные загрузил, разве что в "тип медиафайлов" указал 10 строк. "Заявки в друзья" у меня не получалось сгенерировать, в итоге с помощью костыля смог сделать 28 строк.
