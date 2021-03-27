@@ -1,8 +1,6 @@
 -- Составьте список пользователей users, которые осуществили хотя бы один заказ orders в интернет магазине.
 
-SELECT *
-FROM users u
-WHERE id in (
-    SELECT o.user_id 
-    FROM orders o 			
-);
+SELECT u.name 
+FROM users u JOIN orders o
+ON u.id = o.user_id
+GROUP BY name ;
