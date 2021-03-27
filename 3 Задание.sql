@@ -2,13 +2,6 @@
 -- Поля from, to и label содержат английские названия городов, поле name — русское. 
 -- Выведите список рейсов flights с русскими названиями городов.
 
-SELECT id, 
-	   (SELECT c.name 
-	    FROM cities c 
-	    WHERE label = f.from_
-	   ) as 'from',
-	   (SELECT c.name 
-	    FROM cities c 
-	    WHERE label = f.to_
-	   ) as 'to'
-FROM flights f;
+SELECT f.id, c1.name, c2.name 
+FROM flights f JOIN cities c1 JOIN cities c2 
+ON f.from_ = c1.label AND f.to_ = c2.label;
