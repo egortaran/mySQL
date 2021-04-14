@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `orders`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders` (
   `id` mediumint unsigned NOT NULL AUTO_INCREMENT,
-  `client` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `worker` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  'id_client' mediumint unsigned NOT NULL,
+  'id_worker' mediumint unsigned NOT NULL
   `type_order` set('university','SOM','other') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'university',
   `status` set('discuss','running','check','completed','cancel') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'discuss' COMMENT 'Статус работы: discuss - "Обсуждение", running - "В работе", check - "На проверке", completed - "Завершена", cancel - "Отмена".',
   `price` mediumint DEFAULT '0',
@@ -35,10 +35,10 @@ CREATE TABLE `orders` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `update_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `worker` (`worker`),
-  KEY `client` (`client`),
-  CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`worker`) REFERENCES `workers` (`full_name`) ON UPDATE CASCADE,
-  CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`client`) REFERENCES `clients` (`full_name`) ON UPDATE CASCADE
+  KEY `id_client` (`id_client`),
+  KEY `id_worker` (`id_worker`),
+  CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`id_worker`) REFERENCES `workers` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`id_client`) REFERENCES `clients` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Заказы';
 /*!40101 SET character_set_client = @saved_cs_client */;
 

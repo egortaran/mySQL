@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `clients_SOM`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clients_SOM` (
-  `full_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ФИО',
+  'id' mediumint unsigned NOT NULL AUTO_INCREMENT,
   `time_of_life` set('child','parent','other') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Возраст',
   `subject` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Предмет',
   `schedule` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Расписание',
   `comment` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`full_name`),
-  CONSTRAINT `clients_SOM_ibfk_1` FOREIGN KEY (`full_name`) REFERENCES `users` (`full_name`) ON UPDATE CASCADE
+  PRIMARY KEY (`id`),
+  CONSTRAINT `clients_SOM_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Клиенты SOM';
 /*!40101 SET character_set_client = @saved_cs_client */;
 

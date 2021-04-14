@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS `orders_SOM`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders_SOM` (
   `id` mediumint unsigned NOT NULL AUTO_INCREMENT COMMENT 'Номер заказа',
-  `client_SOM_child` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Ребенок',
-  `client_SOM_parent` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Родитель',
-  `worker` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Преподаватель',
+  'id_parent' mediumint unsigned NOT NULL,
+  'id_worker' mediumint unsigned NOT NULL,
+  'id_child' mediumint unsigned NOT NULL,
   `subgect` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Предмет',
   `status` set('discuss','running','check','completed','cancel') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'discuss' COMMENT 'Статус работы: discuss - "Обсуждение", running - "В работе", check - "На проверке", completed - "Завершена", cancel - "Отмена".',
   `price` mediumint DEFAULT '0' COMMENT 'Цена за одно занятие',
@@ -37,12 +37,12 @@ CREATE TABLE `orders_SOM` (
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `comment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `client_SOM_child` (`client_SOM_child`),
-  KEY `client_SOM_parent` (`client_SOM_parent`),
-  KEY `worker` (`worker`),
-  CONSTRAINT `orders_SOM_ibfk_1` FOREIGN KEY (`client_SOM_child`) REFERENCES `client_SOM_childs` (`full_name`) ON UPDATE CASCADE,
-  CONSTRAINT `orders_SOM_ibfk_2` FOREIGN KEY (`client_SOM_parent`) REFERENCES `client_SOM_parents` (`full_name`) ON UPDATE CASCADE,
-  CONSTRAINT `orders_SOM_ibfk_3` FOREIGN KEY (`worker`) REFERENCES `workers` (`full_name`) ON UPDATE CASCADE
+  KEY `client_SOM_child` (`id_child`),
+  KEY `client_SOM_parent` (`id_parent`),
+  KEY `worker` (`id_worker`),
+  CONSTRAINT `orders_SOM_ibfk_1` FOREIGN KEY (`id_child`) REFERENCES `client_SOM_childs` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `orders_SOM_ibfk_2` FOREIGN KEY (`id_parent`) REFERENCES `client_SOM_parents` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `orders_SOM_ibfk_3` FOREIGN KEY (`id_worker`) REFERENCES `workers` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=299 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Заказы SOM';
 /*!40101 SET character_set_client = @saved_cs_client */;
 

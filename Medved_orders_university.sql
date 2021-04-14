@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `orders_university`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders_university` (
   `id` mediumint unsigned NOT NULL AUTO_INCREMENT COMMENT 'Номер заказа',
-  `client_university` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'Клиент',
-  `worker` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Работник',
+  'id_cleint' mediumint unsigned NOT NULL,
+  'id_worker' mediumint unsigned NOT NULL,
   `status` set('discuss','running','check','completed','cancel') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'discuss' COMMENT 'Статус работы: discuss - "Обсуждение", running - "В работе", check - "На проверке", completed - "Завершена", cancel - "Отмена".',
   `type_order` set('test','coursework','exam','task','paper','project','lab','diploma','anti-plagiarism') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'task',
   `price` mediumint DEFAULT '0' COMMENT 'Цена зказа',
@@ -36,10 +36,10 @@ CREATE TABLE `orders_university` (
   `deadline` date DEFAULT NULL COMMENT 'Дата сдачи',
   `comment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `client_university` (`client_university`),
-  KEY `worker` (`worker`),
-  CONSTRAINT `orders_university_ibfk_1` FOREIGN KEY (`client_university`) REFERENCES `clients_university` (`full_name`) ON UPDATE CASCADE,
-  CONSTRAINT `orders_university_ibfk_2` FOREIGN KEY (`worker`) REFERENCES `workers` (`full_name`) ON UPDATE CASCADE
+  KEY `client_university` (`id_client`),
+  KEY `worker` (`id_worker`),
+  CONSTRAINT `orders_university_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `clients_university` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `orders_university_ibfk_2` FOREIGN KEY (`id_worker`) REFERENCES `workers` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=345 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Заказы университета';
 /*!40101 SET character_set_client = @saved_cs_client */;
 

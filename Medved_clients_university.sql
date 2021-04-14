@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `clients_university`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clients_university` (
-  `full_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ФИО',
+  'id' mediumint unsigned NOT NULL AUTO_INCREMENT,
   `university` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Университет',
   `course` set('1','2','3','4','5','other') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Курс',
   `faculty` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Факультет',
   `comment` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`full_name`),
-  CONSTRAINT `clients_university_ibfk_1` FOREIGN KEY (`full_name`) REFERENCES `users` (`full_name`) ON UPDATE CASCADE
+  PRIMARY KEY (`id`),
+  CONSTRAINT `clients_university_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Клиенты университета';
 /*!40101 SET character_set_client = @saved_cs_client */;
 

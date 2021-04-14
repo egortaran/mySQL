@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `client_SOM_childs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `client_SOM_childs` (
-  `full_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ФИО',
-  `parent` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Родитель',
-  `age` tinyint unsigned DEFAULT NULL COMMENT 'Лет',
+  'id' mediumint unsigned NOT NULL AUTO_INCREMENT,
+  'id_parent' mediumint unsigned NOT NULL,
+  'id_child' mediumint unsigned NOT NULL,  `age` tinyint unsigned DEFAULT NULL COMMENT 'Лет',
   `comment` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`full_name`),
-  KEY `parent` (`parent`),
-  CONSTRAINT `client_SOM_childs_ibfk_1` FOREIGN KEY (`full_name`) REFERENCES `clients_SOM` (`full_name`) ON UPDATE CASCADE,
-  CONSTRAINT `client_SOM_childs_ibfk_2` FOREIGN KEY (`parent`) REFERENCES `client_SOM_parents` (`full_name`) ON UPDATE CASCADE
+  PRIMARY KEY (`id`),
+  KEY `id_parent` (`id_parent`),
+  CONSTRAINT `client_SOM_childs_ibfk_1` FOREIGN KEY (`id_childt`) REFERENCES `clients_SOM` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `client_SOM_childs_ibfk_2` FOREIGN KEY (`id_parent`) REFERENCES `client_SOM_parents` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Дети SOM';
 /*!40101 SET character_set_client = @saved_cs_client */;
 

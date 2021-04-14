@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `workers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workers` (
-  `full_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ФИО',
+  'id' mediumint unsigned NOT NULL,
   `post` set('freelancer','tutor','other') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'freelancer' COMMENT 'Должность',
   `orders` mediumint DEFAULT '0' COMMENT 'Кол-во заказов',
   `salary` mediumint DEFAULT '0' COMMENT 'Зарплата',
@@ -31,8 +31,8 @@ CREATE TABLE `workers` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `comment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  PRIMARY KEY (`full_name`),
-  CONSTRAINT `workers_ibfk_1` FOREIGN KEY (`full_name`) REFERENCES `users` (`full_name`) ON UPDATE CASCADE
+  PRIMARY KEY (`id`),
+  CONSTRAINT `workers_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Работники';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
